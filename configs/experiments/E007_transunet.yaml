@@ -1,0 +1,11 @@
+base_config: base.yaml
+experiment:
+  id: E007
+  notes: TransUNet pilot hybrid transformer baseline
+model:
+  name: transunet
+  backbone: R50-ViT-B16-style hybrid encoder
+  embed_dim: 128
+training:
+  epochs: 20
+

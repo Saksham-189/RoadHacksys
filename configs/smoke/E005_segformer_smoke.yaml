@@ -1,0 +1,14 @@
+base_config: ../experiments/E005_segformer.yaml
+experiment:
+  id: SMOKE_SEGFORMER
+  notes: 2-epoch SegFormer smoke test
+data:
+  max_samples: 12
+model:
+  embed_dim: 32
+  depth: 1
+training:
+  epochs: 2
+  early_stopping_patience: 2
+  batch_size: 2
+

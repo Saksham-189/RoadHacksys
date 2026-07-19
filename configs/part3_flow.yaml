@@ -1,0 +1,54 @@
+seed: 42
+
+paths:
+  raw_mask: runs/part2_healing/real_graph/road_mask_raw.tif
+  probability: runs/part2_healing/real_graph/road_probability.tif
+  benchmark_manifest: data/processed/bengaluru_edge/t256_s128/tile_manifest.csv
+  consolidation_output: runs/part25_consolidation
+  part3_output: runs/part3
+
+consolidation:
+  benchmark_tiles: 40
+  gaps_per_tile: 3
+  maximum_gap_pixels: [16, 20, 24, 30]
+  maximum_angle_degrees: [25, 35, 45]
+  minimum_path_confidence: [0.08, 0.15, 0.25]
+  false_bridge_limit: 0.10
+  target_node_coverage: 0.70
+
+capacity:
+  width_quantiles: [0.33, 0.67]
+  classes:
+    narrow: {relative_capacity: 1.0, speed_kmh: 25.0}
+    medium: {relative_capacity: 2.0, speed_kmh: 35.0}
+    wide: {relative_capacity: 3.0, speed_kmh: 50.0}
+  healing_penalty_weight: 0.25
+
+centrality:
+  betweenness_sources: 300
+  degree_ablation_count: 20
+
+demand:
+  origins: 100
+  destinations_per_origin: 20
+  distance_offset_m: 500.0
+  distance_exponent: 1.5
+  target_p90_vc: 0.85
+
+assignment:
+  bpr_alpha: 0.15
+  bpr_beta: 4.0
+  max_iterations: 200
+  stress_max_iterations: 30
+  tolerance: 0.001
+
+stress:
+  candidate_count: 30
+  removal_percentages: [0.01, 0.02, 0.05, 0.10]
+  flood_radii_m: [250.0, 500.0, 1000.0]
+  flood_centers: 3
+  cascade:
+    enabled: true
+    overload_threshold: 1.25
+    capacity_factor: 0.50
+    max_rounds: 3

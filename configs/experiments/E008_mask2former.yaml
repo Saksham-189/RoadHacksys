@@ -1,0 +1,12 @@
+base_config: base.yaml
+experiment:
+  id: E008
+  notes: Mask2Former pilot query-mask segmentation baseline
+model:
+  name: mask2former
+  backbone: Lightweight Swin-style query-mask decoder
+  embed_dim: 96
+  num_queries: 8
+training:
+  epochs: 20
+

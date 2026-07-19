@@ -1,0 +1,37 @@
+seed: 42
+server:
+  host: 127.0.0.1
+  port: 8765
+  job_timeout_seconds: 60
+paths:
+  checkpoint: runs/e013_pretrained_segformer_rgbn/best.pt
+  manifest: data/expanded_v2/final_manifest.csv
+  graph: runs/part3/transport_graph.graphml
+  demand: runs/part3/gravity_demand.csv
+  baseline: runs/part4/baseline
+  phase4: runs/part4
+  scenarios: configs/scenarios
+  node_criticality: runs/part3/node_ablation_results.csv
+  edge_criticality: runs/part3/edge_ablation_results.csv
+  edge_flow: runs/part3/edge_baseline_flow.csv
+  cache: runs/mvp/cache
+  sessions: runs/mvp/sessions
+  inference: runs/mvp/inference
+  static: mvp/static
+simulation:
+  bpr_alpha: 0.15
+  bpr_beta: 4.0
+  max_iterations: 200
+  tolerance: 0.001
+  affected_threshold: 0.20
+  grid_size_m: 500.0
+  route_examples: 10
+inference:
+  warm_on_startup: true
+  default_tile: bengaluru_edge_00303
+  fallback_clean: runs/e013_pretrained_segformer_rgbn/examples_clean/bengaluru_edge_00303.png
+  fallback_occluded: runs/e013_pretrained_segformer_rgbn/examples_occluded/bengaluru_edge_00303.png
+map:
+  source_crs: EPSG:32643
+  target_crs: EPSG:4326
+  coordinate_precision: 6

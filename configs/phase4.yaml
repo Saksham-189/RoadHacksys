@@ -1,0 +1,18 @@
+seed: 42
+paths:
+  graph: runs/part3/transport_graph.graphml
+  demand: runs/part3/gravity_demand.csv
+  baseline_edge_flow: runs/part3/edge_baseline_flow.csv
+  node_criticality: runs/part3/node_ablation_results.csv
+  edge_criticality: runs/part3/edge_ablation_results.csv
+  edge_betweenness: runs/part3/edge_betweenness_reference.csv
+  output: runs/part4
+assignment:
+  bpr_alpha: 0.15
+  bpr_beta: 4.0
+  max_iterations: 200
+  tolerance: 0.001
+impact:
+  affected_threshold: 0.20
+  grid_size_m: 500.0
+  route_examples: 10

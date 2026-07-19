@@ -1,0 +1,11 @@
+base_config: base.yaml
+experiment:
+  id: E006
+  notes: Swin-Unet pilot transformer baseline
+model:
+  name: swin_unet
+  backbone: Swin-T-style lightweight encoder
+  embed_dim: 96
+training:
+  epochs: 20
+

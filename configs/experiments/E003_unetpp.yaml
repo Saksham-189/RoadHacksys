@@ -1,0 +1,8 @@
+base_config: base.yaml
+experiment:
+  id: E003
+  notes: UNet++ nested skip CNN baseline
+model:
+  name: unetpp
+  backbone: ResNet34-style nested skip encoder
+

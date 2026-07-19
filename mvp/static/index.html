@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Route Resilience</title>
+  <link rel="stylesheet" href="/static/vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button id="sidebar-toggle" class="icon-button sidebar-toggle" title="Toggle controls">
+        <i data-lucide="panel-left"></i>
+      </button>
+      <div class="brand">
+        <span class="brand-mark"></span>
+        <div>
+          <strong>Route Resilience</strong>
+          <span>Urban mobility stress lab</span>
+        </div>
+      </div>
+      <nav class="tabs" aria-label="Application views">
+        <button class="tab active" data-view="extraction">Road Extraction</button>
+        <button class="tab" data-view="criticality">Criticality</button>
+        <button class="tab" data-view="disruption">Disruption</button>
+      </nav>
+      <div id="health-chip" class="health-chip">
+        <span></span>
+        <b>Starting</b>
+      </div>
+    </header>
+
+    <aside id="sidebar" class="sidebar">
+      <section class="side-view active" data-panel="extraction">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">E013 SEGFORMER-B0</span>
+            <h2>Inspect one satellite tile</h2>
+          </div>
+          <i data-lucide="scan-search"></i>
+        </div>
+        <label class="field">
+          <span>Test tile</span>
+          <select id="tile-select"></select>
+        </label>
+        <label class="field">
+          <span>Occlusion</span>
+          <select id="occlusion-select">
+            <option value="none">None</option>
+            <option value="trees">Tree cover</option>
+            <option value="cloud">Cloud</option>
+            <option value="shadow">Shadow</option>
+            <option value="cutout">Cutout</option>
+            <option value="vehicles">Vehicles</option>
+            <option value="haze">Haze</option>
+          </select>
+        </label>
+        <button id="run-inference" class="primary-button">
+          <i data-lucide="play"></i>
+          Run live inference
+        </button>
+        <div class="method-note">
+          <strong>RGBN input</strong>
+          <span>Checkpoint threshold 0.10. CUDA is used when available.</span>
+        </div>
+      </section>
+
+      <section class="side-view" data-panel="criticality">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">FLOW-AWARE RANKING</span>
+            <h2>Explore gatekeeper infrastructure</h2>
+          </div>
+          <i data-lucide="network"></i>
+        </div>
+        <div class="control-group">
+          <span class="control-label">Map layers</span>
+          <label class="check-row"><input type="checkbox" data-layer="relative_flow" checked> Relative flow</label>
+          <label class="check-row"><input type="checkbox" data-layer="node_criticality" checked> Critical nodes</label>
+          <label class="check-row"><input type="checkbox" data-layer="edge_criticality"> Critical edges</label>
+        </div>
+        <div id="selection-inspector" class="inspector empty">
+          <i data-lucide="mouse-pointer-2"></i>
+          <p>Select a node or road link on the map.</p>
+        </div>
+        <div class="caveat">
+          Rankings use relative capacity and graph-derived demand, not measured traffic.
+        </div>
+      </section>
+
+      <section class="side-view" data-panel="disruption">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">SCENARIO ENGINE</span>
+            <h2>Close infrastructure and reroute demand</h2>
+          </div>
+          <i data-lucide="triangle-alert"></i>
+        </div>
+        <label class="field">
+          <span>Preset scenario</span>
+          <select id="preset-select">
+            <option value="">Build interactively</option>
+          </select>
+        </label>
+        <div class="control-group">
+          <span class="control-label">Map action</span>
+          <div class="action-grid">
+            <button class="action-button active" data-action="inspect"><i data-lucide="mouse-pointer-2"></i><span>Inspect</span></button>
+            <button class="action-button" data-action="close_nodes"><i data-lucide="circle-x"></i><span>Node</span></button>
+            <button class="action-button" data-action="close_edges"><i data-lucide="ban"></i><span>Road</span></button>
+            <button class="action-button" data-action="close_circle"><i data-lucide="waves"></i><span>Flood</span></button>
+            <button class="action-button" data-action="capacity_derating"><i data-lucide="construction"></i><span>Capacity</span></button>
+          </div>
+        </div>
+        <label class="field range-field" id="radius-field">
+          <span>Flood radius <b id="radius-value">250 m</b></span>
+          <input id="radius-input" type="range" min="100" max="1500" step="50" value="250">
+        </label>
+        <label class="field range-field" id="capacity-field">
+          <span>Remaining capacity <b id="capacity-value">50%</b></span>
+          <input id="capacity-input" type="range" min="10" max="100" step="5" value="50">
+        </label>
+        <div class="actions-header">
+          <span>Composed actions</span>
+          <div>
+            <button id="undo-action" class="icon-button" title="Undo last action"><i data-lucide="undo-2"></i></button>
+            <button id="clear-actions" class="icon-button" title="Clear scenario"><i data-lucide="trash-2"></i></button>
+          </div>
+        </div>
+        <div id="actions-list" class="actions-list empty">No actions selected</div>
+        <div class="run-row">
+          <div class="segmented">
+            <button class="active" data-run-mode="preview">Preview</button>
+            <button data-run-mode="exact">Exact</button>
+          </div>
+          <button id="run-scenario" class="primary-button compact">
+            <i data-lucide="play"></i>
+            Run
+          </button>
+        </div>
+      </section>
+    </aside>
+
+    <main class="main-stage">
+      <section id="inference-workspace" class="workspace active">
+        <div class="workspace-heading">
+          <div>
+            <span class="eyebrow">SATELLITE DIAGNOSTIC</span>
+            <h1 id="inference-title">Choose a tile and run E013</h1>
+          </div>
+          <div id="inference-status" class="status-text">Ready</div>
+        </div>
+        <div id="inference-panels" class="inference-panels waiting">
+          <div class="empty-state">
+            <i data-lucide="satellite"></i>
+            <h3>Road extraction is ready</h3>
+            <p>Run one held-out RGBN tile to compare the input, target, probability and prediction.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="map-workspace" class="workspace">
+        <div id="map"></div>
+        <div id="map-legend" class="map-legend">
+          <strong>Relative flow</strong>
+          <div class="legend-scale"><span></span><span></span><span></span></div>
+          <div class="legend-labels"><span>Low</span><span>High</span></div>
+        </div>
+        <button id="reset-map" class="map-tool" title="Reset map view"><i data-lucide="maximize"></i></button>
+        <div id="map-message" class="map-message hidden"></div>
+      </section>
+
+      <section id="metrics-strip" class="metrics-strip hidden">
+        <div class="metric">
+          <span>Served demand</span>
+          <strong id="metric-served">100%</strong>
+          <small>Baseline 100%</small>
+        </div>
+        <div class="metric">
+          <span>Disconnected</span>
+          <strong id="metric-disconnected">0%</strong>
+          <small>Estimated demand</small>
+        </div>
+        <div class="metric">
+          <span>Resilience</span>
+          <strong id="metric-resilience">1.000</strong>
+          <small id="metric-band">Baseline</small>
+        </div>
+        <div class="metric">
+          <span>Path change</span>
+          <strong id="metric-path">0%</strong>
+          <small>Served OD cohort</small>
+        </div>
+        <div class="metric">
+          <span>Time change</span>
+          <strong id="metric-time">0%</strong>
+          <small>Congested travel time</small>
+        </div>
+        <div class="metric">
+          <span>Affected demand</span>
+          <strong id="metric-affected">0%</strong>
+          <small id="metric-runtime">No scenario</small>
+        </div>
+        <div id="download-menu" class="download-menu"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/vendor/leaflet/leaflet.js"></script>
+  <script src="/static/vendor/lucide/lucide.min.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>

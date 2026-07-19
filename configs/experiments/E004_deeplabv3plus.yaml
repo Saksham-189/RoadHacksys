@@ -1,0 +1,8 @@
+base_config: base.yaml
+experiment:
+  id: E004
+  notes: DeepLabV3+ multi-scale CNN baseline
+model:
+  name: deeplabv3plus
+  backbone: ResNet50-style residual ASPP encoder
+

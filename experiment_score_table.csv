@@ -1,0 +1,12 @@
+exp_id,phase,sensor,aoi,model,backbone,tile_size,bands,loss,augmentation,synthetic_occlusion,train_split,val_split,test_split,iou,dice,precision,recall,occlusion_recall,relaxed_iou,connectivity_ratio,components_count,notes
+E001,Phase 1,Sentinel-2,TBD,U-Net,Basic CNN,256,"RGB",BCE+Dice,Basic,No,TBD,TBD,TBD,,,,,,,,,Baseline CNN
+E002,Phase 1,Sentinel-2,TBD,U-Net,ResNet34,256,"RGB",BCE+Dice,Basic,No,TBD,TBD,TBD,,,,,,,,,Pretrained encoder baseline
+E003,Phase 1,Sentinel-2,TBD,UNet++,ResNet34,256,"RGB",BCE+Dice,Basic,No,TBD,TBD,TBD,,,,,,,,,Nested skip CNN baseline
+E004,Phase 1,Sentinel-2,TBD,DeepLabV3+,ResNet50,256,"RGB",BCE+Dice,Basic,No,TBD,TBD,TBD,,,,,,,,,Multi-scale CNN baseline
+E005,Phase 2,Sentinel-2,TBD,SegFormer,MiT-B0/B1,256,"RGB",BCE+Dice,Basic,No,TBD,TBD,TBD,,,,,,,,,Transformer baseline
+E006,Phase 2,Sentinel-2,TBD,Swin-Unet,Swin-T,256,"RGB",BCE+Dice,Basic,No,TBD,TBD,TBD,,,,,,,,,Transformer baseline
+E007,Phase 2,Sentinel-2,TBD,TransUNet,ViT,256,"RGB",BCE+Dice,Basic,No,TBD,TBD,TBD,,,,,,,,,Hybrid transformer baseline
+E008,Phase 2,Sentinel-2,TBD,Mask2Former,TBD,256,"RGB",BCE+Dice,Basic,No,TBD,TBD,TBD,,,,,,,,,Advanced segmentation baseline
+E009,Phase 2,Sentinel-2,TBD,DINO/ViT Head,ViT,256,"RGB",BCE+Dice,Basic,No,TBD,TBD,TBD,,,,,,,,,Representation-learning baseline
+E010,Phase 4,Mixed,TBD,Best CNN,TBD,256/512,"RGB/RGBN",Dice+Focal,Strong,Yes,TBD,TBD,TBD,,,,,,,,,Synthetic occlusion candidate
+E011,Phase 4,Mixed,TBD,Best Transformer,TBD,256/512,"RGB/RGBN",Dice+Focal,Strong,Yes,TBD,TBD,TBD,,,,,,,,,Synthetic occlusion candidate

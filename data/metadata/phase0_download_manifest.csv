@@ -1,0 +1,9 @@
+﻿dataset,aoi,path,source,date_or_version,notes
+OSM,bengaluru_core,C:\Users\sriva\OneDrive\Desktop\IsroHackathon\data\raw\osm\bengaluru_core\bengaluru_core-roads.osm,Overpass API,2026-06-22,AOI road extract
+Sentinel-2,bengaluru_core,C:\Users\sriva\OneDrive\Desktop\IsroHackathon\data\raw\sentinel2\bengaluru_core\S2B_43PHQ_20250308_0_L2A,Earth Search STAC,2025-03-08T05:25:19.773000Z,Scene S2B_43PHQ_20250308_0_L2A cloud_cover=0.00002
+OSM,bengaluru_core,C:\Users\sriva\OneDrive\Desktop\IsroHackathon\data\raw\osm\bengaluru_core\bengaluru_core-roads.osm,Overpass API,2026-06-22,AOI road extract
+Sentinel-2,bengaluru_core,C:\Users\sriva\OneDrive\Desktop\IsroHackathon\data\raw\sentinel2\bengaluru_core\S2B_43PHQ_20250308_0_L2A,Earth Search STAC,2025-03-08T05:25:19.773000Z,Scene S2B_43PHQ_20250308_0_L2A cloud_cover=0.00002
+OSM,hyderabad_mixed,C:\Users\sriva\OneDrive\Desktop\IsroHackathon\data\raw\osm\hyderabad_mixed\hyderabad_mixed-roads.osm,Overpass API,2026-06-26,AOI road extract
+Sentinel-2,hyderabad_mixed,C:\Users\sriva\OneDrive\Desktop\IsroHackathon\data\raw\sentinel2\hyderabad_mixed\S2B_43QHV_20250328_0_L2A,Earth Search STAC,2025-03-28T05:24:05.807000Z,Scene S2B_43QHV_20250328_0_L2A cloud_cover=0.000894
+OSM,bengaluru_edge,C:\Users\sriva\OneDrive\Desktop\IsroHackathon\data\raw\osm\bengaluru_edge\bengaluru_edge-roads.osm,Overpass API,2026-06-26,AOI road extract
+Sentinel-2,bengaluru_edge,C:\Users\sriva\OneDrive\Desktop\IsroHackathon\data\raw\sentinel2\bengaluru_edge\S2B_43PGQ_20250206_0_L2A,Earth Search STAC,2025-02-06T05:25:21.203000Z,Scene S2B_43PGQ_20250206_0_L2A cloud_cover=0.000098

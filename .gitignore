@@ -1,0 +1,73 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments and local tooling
+.venv/
+.venv-win/
+venv/
+env/
+.matplotlib/
+.ipynb_checkpoints/
+
+# Secrets and machine-local configuration
+.env
+.env.*
+*.pem
+*.key
+*.token
+
+# Large or reproducible geospatial data
+data/raw/
+data/processed/
+data/expanded_v2/raw/
+data/expanded_v2/tiles/
+*.tif
+*.tiff
+*.vrt
+*.npy
+*.npz
+*.osm
+
+# Training outputs, checkpoints, runtime caches and sessions
+runs/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# Generated heavy reports and media exports
+reports/**/*.docx
+reports/**/*.pptx
+reports/**/*.pdf
+reports/**/examples_clean/
+reports/**/examples_occluded/
+reports/**/E012_visual_examples/
+reports/**/*.png
+reports/**/*.jpg
+reports/**/*.jpeg
+
+# Keep lightweight tabular and markdown summaries
+!reports/**/*.md
+!reports/**/*.csv
+!reports/**/*.json
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.lnk
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+~$*

@@ -1,0 +1,13 @@
+base_config: ../experiments/E001_unet.yaml
+experiment:
+  id: SMOKE_UNET
+  notes: 2-epoch U-Net smoke test
+data:
+  max_samples: 12
+model:
+  base_channels: 8
+training:
+  epochs: 2
+  early_stopping_patience: 2
+  batch_size: 2
+

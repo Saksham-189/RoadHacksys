@@ -1,0 +1,15 @@
+{
+  "scenario_id": "D007",
+  "name": "Top three critical junctions unavailable",
+  "hazard_type": "compound_node_failure",
+  "actions": [
+    {
+      "action": "close_nodes",
+      "node_ids": [
+        "3900",
+        "3894",
+        "3834"
+      ]
+    }
+  ]
+}

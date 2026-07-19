@@ -1,0 +1,16 @@
+{
+  "scenario_id": "D005",
+  "name": "Highest-betweenness graph bridge unavailable",
+  "hazard_type": "bridge_closure",
+  "actions": [
+    {
+      "action": "close_edges",
+      "edges": [
+        {
+          "source": "3894",
+          "target": "3900"
+        }
+      ]
+    }
+  ]
+}

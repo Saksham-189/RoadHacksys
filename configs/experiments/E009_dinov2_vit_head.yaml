@@ -1,0 +1,12 @@
+base_config: base.yaml
+experiment:
+  id: E009
+  notes: DINO/ViT-style segmentation head baseline
+model:
+  name: dinov2_vit_head
+  backbone: ViT-S-style segmentation head
+  embed_dim: 96
+  depth: 6
+training:
+  epochs: 20
+

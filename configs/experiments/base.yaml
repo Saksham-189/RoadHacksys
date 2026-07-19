@@ -1,0 +1,33 @@
+seed: 42
+
+experiment:
+  id: BASE
+  notes: Sentinel-2 road segmentation experiment
+
+data:
+  manifest_path: data/processed/merged_t256_s128_manifest.csv
+  input_bands: RGB
+  train_split: train
+  val_split: val
+  test_split: test
+  train_aois: bengaluru_core
+  test_aois: bengaluru_edge
+  augment: true
+  synthetic_occlusion: false
+  max_samples:
+
+model:
+  name: unet
+  backbone: Basic CNN
+  base_channels: 32
+  embed_dim: 96
+
+training:
+  device: auto
+  epochs: 40
+  early_stopping_patience: 8
+  batch_size: 4
+  num_workers: 0
+  lr: 0.0001
+  weight_decay: 0.0001
+  loss: BCE+Dice

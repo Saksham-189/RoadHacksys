@@ -1,0 +1,56 @@
+{
+  "generated_on": "2026-07-02",
+  "dataset": {
+    "sensor": "Sentinel-2",
+    "spatial_resolution_m": 10,
+    "tiles": 2568,
+    "aois": 18,
+    "split_counts": {
+      "train": 1804,
+      "test": 304,
+      "val": 460
+    }
+  },
+  "part1": {
+    "current_model": "E013 pretrained SegFormer-B0",
+    "input": "RGBN",
+    "synthetic_occlusion_training": true,
+    "test_tiles": 304,
+    "clean_iou": 0.3002643088450307,
+    "clean_dice": 0.4618511894889165,
+    "clean_recall": 0.7831608910650364,
+    "occlusion_recall": 0.7795023730938784,
+    "current_final_score": 0.4934166144170991,
+    "parameters": 3715969,
+    "training_minutes": 36.94294327894847,
+    "historical_v1_model": "E012",
+    "historical_v1_score": 0.573358,
+    "protocol_note": "E012 and E013 use different datasets/evaluation protocols and their final scores are not directly comparable."
+  },
+  "part2": {
+    "method": "B007 directional confidence-gated healing",
+    "largest_component_after": 0.8846475174596004,
+    "route_success_rate": 0.9625,
+    "false_bridge_rate": 0.07400905788010248,
+    "node_coverage": 0.6387244605690281,
+    "coverage_gate_met": false
+  },
+  "part3": {
+    "routing_nodes": 3345,
+    "routing_edges": 3749,
+    "od_pairs": 2000,
+    "baseline_served_ratio": 1.0,
+    "top_flow_critical_node": "3900",
+    "node_failure_disconnected_ratio": 0.18179819783052653,
+    "top_flow_critical_edge": "3834-3894",
+    "edge_failure_time_increase": 6.253365431281715
+  },
+  "part4": {
+    "baseline_average_path_m": 5921.286895224819,
+    "scenarios": 9,
+    "worst_scenario": "D002",
+    "worst_disconnected_ratio": 0.19288153356339066,
+    "worst_resilience": 0.8071184664366093,
+    "all_converged": true
+  }
+}

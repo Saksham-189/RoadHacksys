@@ -1,0 +1,5 @@
+part,stage,selected_method,headline_metric,value,status
+1,Road segmentation,E013 pretrained SegFormer-B0,Expanded-test final score,0.4934166144170991,Current candidate
+2,Graph extraction and healing,B007 directional confidence-gated healing,Route success rate,0.9625,Safe; coverage gate unmet
+3,Criticality and flow analysis,Gravity demand + MSA flow-aware ablation,Critical-node disconnected demand,0.18179819783052653,Complete
+4,Disruption simulation,JSON scenario engine + exact MSA rerouting,Worst service-adjusted resilience,0.8071184664366093,Complete

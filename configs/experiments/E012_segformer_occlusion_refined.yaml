@@ -1,0 +1,18 @@
+base_config: base.yaml
+experiment:
+  id: E012
+  notes: Refined SegFormer RGBN synthetic occlusion run with lower learning rate
+data:
+  input_bands: RGBN
+  synthetic_occlusion: true
+model:
+  name: segformer
+  backbone: MiT-B1-style patch transformer
+  embed_dim: 128
+  depth: 4
+training:
+  epochs: 60
+  early_stopping_patience: 12
+  lr: 0.00005
+  loss: Dice+Focal
+

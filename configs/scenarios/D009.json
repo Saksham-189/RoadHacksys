@@ -1,0 +1,15 @@
+{
+  "scenario_id": "D009",
+  "name": "Three matched random junction closures",
+  "hazard_type": "random_failure",
+  "actions": [
+    {
+      "action": "close_nodes",
+      "node_ids": [
+        "4455",
+        "1857",
+        "1250"
+      ]
+    }
+  ]
+}

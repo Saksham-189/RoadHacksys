@@ -1,0 +1,12 @@
+base_config: base.yaml
+experiment:
+  id: E005
+  notes: SegFormer pilot transformer baseline
+model:
+  name: segformer
+  backbone: MiT-B0-style patch transformer
+  embed_dim: 96
+  depth: 4
+training:
+  epochs: 20
+

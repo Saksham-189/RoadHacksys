@@ -1,0 +1,24 @@
+{
+  "scenario_id": "D008",
+  "name": "Top three critical road links unavailable",
+  "hazard_type": "compound_edge_failure",
+  "actions": [
+    {
+      "action": "close_edges",
+      "edges": [
+        {
+          "source": "3834",
+          "target": "3894"
+        },
+        {
+          "source": "3827",
+          "target": "3834"
+        },
+        {
+          "source": "3806",
+          "target": "3827"
+        }
+      ]
+    }
+  ]
+}

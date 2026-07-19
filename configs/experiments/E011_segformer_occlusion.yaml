@@ -1,0 +1,16 @@
+base_config: base.yaml
+experiment:
+  id: E011
+  notes: Synthetic occlusion candidate for best transformer slot
+data:
+  input_bands: RGBN
+  synthetic_occlusion: true
+model:
+  name: segformer
+  backbone: MiT-B1-style patch transformer
+  embed_dim: 128
+  depth: 4
+training:
+  epochs: 40
+  loss: Dice+Focal
+

@@ -1,0 +1,14 @@
+base_config: base.yaml
+experiment:
+  id: E010
+  notes: Synthetic occlusion candidate for best CNN slot
+data:
+  input_bands: RGBN
+  synthetic_occlusion: true
+model:
+  name: deeplabv3plus
+  backbone: ResNet50-style residual ASPP encoder
+training:
+  epochs: 40
+  loss: Dice+Focal
+

@@ -1,0 +1,8 @@
+base_config: base.yaml
+experiment:
+  id: E002
+  notes: ResNet-style U-Net baseline
+model:
+  name: resnet_unet
+  backbone: ResNet34-style residual encoder
+

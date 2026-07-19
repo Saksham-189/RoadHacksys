@@ -1,0 +1,17 @@
+{
+  "scenario_id": "D004",
+  "name": "Construction halves capacity on top V/C edge",
+  "hazard_type": "construction",
+  "actions": [
+    {
+      "action": "capacity_derating",
+      "edges": [
+        {
+          "source": "3905",
+          "target": "3906",
+          "capacity_factor": 0.5
+        }
+      ]
+    }
+  ]
+}

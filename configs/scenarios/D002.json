@@ -1,0 +1,19 @@
+{
+  "scenario_id": "D002",
+  "name": "Compound 500 m and 1 km flood zones",
+  "hazard_type": "flood",
+  "actions": [
+    {
+      "action": "close_circle",
+      "x": 769201.4285714285,
+      "y": 1444621.4285714286,
+      "radius_m": 500
+    },
+    {
+      "action": "close_circle",
+      "x": 768827.5,
+      "y": 1444628.75,
+      "radius_m": 1000
+    }
+  ]
+}
